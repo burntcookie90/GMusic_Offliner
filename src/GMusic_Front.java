@@ -60,11 +60,9 @@ public class GMusic_Front extends JFrame {
 					fileList = cache_dir.listFiles();
 					for(int i = 0; i<fileList.length;i++){
 						String curFileName = fileList[i].getName();
-						
+
 						System.out.println(curFileName);
-						
-						
-						
+
 					}
 					txtDirectory.setText(cache_dir.getAbsolutePath());
 					//This is where a real application would open the file.
@@ -75,7 +73,7 @@ public class GMusic_Front extends JFrame {
 				for(int i = 0; i<fileList.length;i++){
 					File curFile = fileList[i];
 					String curFileName = curFile.getName();
-					
+
 					System.out.println(curFileName);
 					try {
 						stat = conn.createStatement();
@@ -83,14 +81,17 @@ public class GMusic_Front extends JFrame {
 						System.out.println(sql);
 						rs = stat.executeQuery(sql);
 						while (rs.next()) {
-						      System.out.println("Album = " + rs.getString("Album"));
-						    }
-						
+							System.out.println("TrackNumber = " + rs.getString("TrackNumber"));
+							System.out.println("Artist = " + rs.getString("Artist"));
+							System.out.println("Album = " + rs.getString("Album"));
+							System.out.println("Title = " + rs.getString("Title"));
+						}
+
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
+
 				}
 			}
 		}
@@ -121,8 +122,8 @@ public class GMusic_Front extends JFrame {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
 		Class.forName("org.sqlite.JDBC");
-	    
-	    
+
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
