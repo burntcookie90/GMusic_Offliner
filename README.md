@@ -1,4 +1,4 @@
-Google Music Cache Tagger
+Google Music Offline Tagger
 ==================================
 
 ![Screenshot] (https://github.com/burntcookie90/GMusic_Offliner/raw/master/screenshot.png)
