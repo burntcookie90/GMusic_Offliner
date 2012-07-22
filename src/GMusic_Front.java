@@ -30,6 +30,7 @@ import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.TagException;
 import org.jaudiotagger.tag.images.Artwork;
+import org.jaudiotagger.tag.images.ArtworkFactory;
 
 public class GMusic_Front extends JFrame {
 	private static Connection conn;
@@ -157,6 +158,9 @@ public class GMusic_Front extends JFrame {
 								
 								File artworkFile = new File(artworkPath.toString());
 								
+								Artwork artwork_to_write = ArtworkFactory.createArtworkFromFile(artworkFile);
+								tag.setField(artwork_to_write);
+								f.commit();
 								
 								
 							}
