@@ -20,3 +20,8 @@ The first button requires you to choose your `music.db` file, which can be found
 The second button requires you to chose the directory your music files are in. This is found under caches -> `music`. 
 
 Then just hit tag, and it should do all the work for you!
+
+
+
+You can find the download in the `Downloads` tab!
+==================================================
