@@ -2,6 +2,7 @@ Google Music Cache Tagger
 ==================================
 
 ![Screenshot] (https://github.com/burntcookie90/GMusic_Offliner/raw/master/screenshot.png)
+
 This is a small java program that will tag your offline music.
 
 It assumes that you've already pulled your cache from your phone.
