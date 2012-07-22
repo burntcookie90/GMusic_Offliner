@@ -49,7 +49,7 @@ public class GMusic_Front extends JFrame {
 	public String genre;
 	public Path p1;
 	/**
-	 * @author vishnu
+	 * @author 
 	 *
 	 */
 	private class ButtonListener implements ActionListener {
