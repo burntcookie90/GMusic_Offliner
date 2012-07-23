@@ -23,7 +23,7 @@ The second button requires you to chose the directory your music files are in. T
 
 Then just hit tag, and it should do all the work for you!
 
-
+If you want to run this in such a way that you can know the progress, run it from the command line with `java -jar gmusic_tagger.jar`
 
 You can find the download in the `Downloads` tab!
 ==================================================
