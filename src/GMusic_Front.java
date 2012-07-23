@@ -48,6 +48,7 @@ public class GMusic_Front extends JFrame {
 	public String albumArtist;
 	public String genre;
 	public Path p1;
+	public String year;
 	/**
 	 * @author 
 	 *
@@ -103,7 +104,7 @@ public class GMusic_Front extends JFrame {
 					System.out.println(curTrackFileName);
 					try {
 						stat = conn.createStatement();
-						String sqlMetaData = "select TrackNumber, AlbumArtist, Album, Genre, Artist, Title, AlbumId from music where localcopytype = 200 and LocalCopyPath = \""+curTrackFileName+"\";";
+						String sqlMetaData = "select Year, TrackNumber, AlbumArtist, Album, Genre, Artist, Title, AlbumId from music where localcopytype = 200 and LocalCopyPath = \""+curTrackFileName+"\";";
 						System.out.println(sqlMetaData);
 						rs = stat.executeQuery(sqlMetaData);
 						while (rs.next()) {
@@ -128,6 +129,9 @@ public class GMusic_Front extends JFrame {
 							genre = rs.getString("Genre");
 							System.out.println("Genre = "+genre);
 							
+							year = rs.getString("Year");
+							System.out.println("Year = "+year);
+							
 							MP3File f = (MP3File) AudioFileIO.read(curTrackFile);
 							Tag tag = f.getTagOrCreateAndSetDefault();
 							
@@ -139,6 +143,7 @@ public class GMusic_Front extends JFrame {
 							tag.setField(FieldKey.TITLE,title);
 							tag.setField(FieldKey.TRACK,trackNum);
 							tag.setField(FieldKey.GENRE,genre);
+							tag.setField(FieldKey.YEAR,year);
 							f.commit();
 							
 							String sqlArtWork = "select LocalLocation from artwork where AlbumId = "+rs.getString("AlbumId")+";";
