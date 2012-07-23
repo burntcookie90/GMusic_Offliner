@@ -34,7 +34,7 @@ import org.jaudiotagger.tag.images.ArtworkFactory;
 
 public class GMusic_Front extends JFrame {
 	private static Connection conn;
-	File dbfile;
+	public File dbfile;
 	public File[] fileList;
 	public Statement stat;
 	public ResultSet rs;
@@ -78,6 +78,7 @@ public class GMusic_Front extends JFrame {
 			}
 			else if (e.getSource() == btnSelectMusicDirectory){
 				fc2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				fc2.setCurrentDirectory(dbfile);
 				int returnVal = fc2.showOpenDialog(GMusic_Front.this);
 
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -140,8 +141,6 @@ public class GMusic_Front extends JFrame {
 							tag.setField(FieldKey.GENRE,genre);
 							f.commit();
 							
-							
-							
 							String sqlArtWork = "select LocalLocation from artwork where AlbumId = "+rs.getString("AlbumId")+";";
 							System.out.println(sqlArtWork);
 							rs2 = stat.executeQuery(sqlArtWork);
@@ -162,12 +161,16 @@ public class GMusic_Front extends JFrame {
 								tag.setField(artwork_to_write);
 								f.commit();
 								
-								
 							}
 							
 							Path newPath = Paths.get(p1.getParent().toString(),trackNum+"."+title+".mp3");
 							File newFileName = new File(newPath.toString());
 							boolean success = curTrackFile.renameTo(newFileName);
+//							System.err.println("i is: "+i);
+//							System.err.println("Length of file list is: "+fileList.length);
+							System.out.println("progress is: "+((double)i/(double)fileList.length)*100+"%");
+							double progress = ((double)i/(double)fileList.length)*100;
+							lblProgress.setText(progress+"%");
 						}
 
 					} catch (SQLException e1) {
@@ -214,6 +217,7 @@ public class GMusic_Front extends JFrame {
 	private JButton btnTag;
 
 	private JTextArea txtDirectory;
+	private JLabel lblProgress;
 
 	/**
 	 * Launch the application.
@@ -223,7 +227,6 @@ public class GMusic_Front extends JFrame {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
 		Class.forName("org.sqlite.JDBC");
-
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -242,7 +245,7 @@ public class GMusic_Front extends JFrame {
 	 */
 	public GMusic_Front() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 291, 265);
+		setBounds(100, 100, 292, 288);
 		contentPane = new JPanel();
 		System.out.println("Jpanel created");
 		contentPane.setBackground(new Color(19,22,25));
@@ -288,5 +291,10 @@ public class GMusic_Front extends JFrame {
 		txtDirectory.setBackground(new Color(19,22,25));
 		txtDirectory.setBounds(12, 148, 265, 37);
 		contentPane.add(txtDirectory);
+		
+		lblProgress = new JLabel("");
+		lblProgress.setForeground(new Color(51,181,229));
+		lblProgress.setBounds(12, 234, 265, 15);
+		contentPane.add(lblProgress);
 	}
 }
