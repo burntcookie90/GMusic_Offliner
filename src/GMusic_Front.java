@@ -169,7 +169,7 @@ public class GMusic_Front extends JFrame {
 							}
 							
 							Path newPath = Paths.get(p1.getParent().toString(),trackNum+"."+title+".mp3");
-							File newFileName = new File(newPath.toString());
+							File newFileName = new File(newPath.toString().replaceAll("[\\/:*?\"<>|]",""));
 							boolean success = curTrackFile.renameTo(newFileName);
 //							System.err.println("i is: "+i);
 //							System.err.println("Length of file list is: "+fileList.length);
